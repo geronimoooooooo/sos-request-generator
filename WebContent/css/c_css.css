@@ -2,6 +2,28 @@
 
 
 .c_body {
-    background-image: url("../img/forest_mountains.jpg");
-
+    background-image: url("../img/forest_mountains.jpg");       
 }
+
+.c_container {
+	 background-color:  white;
+	 width: 1100px;
+	 margin-top: 20px;
+}
+
+.c_container_inner{
+	margin-top:50px;
+	margin-left: 30px;
+	margin-right: 50px;
+}
+
+#c_p_intro {
+	margin-top: -10px;
+	margin-bottom: 50px;
+	padding-bottom: 15px;
+}
+
+.form-control {
+    width:auto;
+    display:inline-block;
+    }
