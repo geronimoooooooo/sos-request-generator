@@ -35,7 +35,7 @@
                             <div class="alert alert-danger">Oops! Seems there are some errors..</div>
                         </div>
                         <div id="valOk" class="row viewerror clearfix hidden">
-                            <div class="alert alert-success">Yay! ..</div>
+                            <div class="alert alert-success">Yay!..</div>
                         </div>
 
                         
