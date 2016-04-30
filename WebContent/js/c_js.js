@@ -5,8 +5,8 @@ $(document).ready(function() {
 	
 
 	$('.selectpicker').selectpicker({
-	  style: 'btn-info',
-	  size: 4
+	  //style: 'btn-default',
+	  size: 7
 	});
 	
 	
@@ -48,10 +48,40 @@ $(document).ready(function() {
 	});
 	
 	
+	var data = {};
+	$("#add").click(function ()
+	{
+		console.log("add");
+		var select2 = $('#player2');
+	select2.each(function(el) {
+	                        alert($(this).val())
+	                    data[$(this).attr("sportsName")] = $(this).val();
+	                        
+	            });
+
+	      $.ajax({
+	             type: 'GET',
+	             url:  'Dropdown', 
+	             data: JSON.stringify({
+	     			sportsName : data
+	     		}),
+	                              
+	             success: function(msg){              
+	                   
+	            }   
+	      });
+
+	     }); 
+	
+
 	
 	
 	
-	
+	$( "form" ).on( "submit", function( event ) {
+		console.log("aaaaaaaaaaa");
+		  event.preventDefault();
+		  console.log( $( this ).serialize() );
+		});
 	
 	
 });

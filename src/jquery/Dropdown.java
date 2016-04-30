@@ -33,7 +33,7 @@ public class Dropdown extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doGet()");
 		String [] stray = request.getParameterValues("sportsName");
-		System.out.println(stray.length);
+		System.out.println(request.getParameterValues("sportsName"));
 		String sportsName = request.getParameter("sportsName");
         List<String> list = new ArrayList<String>();
         String json = null;
@@ -43,6 +43,7 @@ System.out.println("sportsName"+sportsName);
                 list.add("Cristiano Ronaldo");
                 list.add("David Beckham");
                 list.add("Diego Maradona");
+                list.add("https://gist.githubusercontent.com/geronimoooooooo/a916893a267fbd2b2701/raw/39d85d6b67fc2cb7abce16a5fc8ccebba11692c5/multi.geojson");
         } else if (sportsName.equals("Cricket")) {
                 list.add("Sourav Ganguly");
                 list.add("Sachin Tendulkar");

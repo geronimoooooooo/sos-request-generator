@@ -76,15 +76,21 @@
 
 <div id="dropdown2" class="well">
 	<select id="sports2" class="selectpicker show-tick">
-	 <option>Select Sports</option>
-	                <option value="Football">Football</option>
-	                <option value="Cricket">Cricket</option>
+	 	<option>Select Sports</option>
+        <option value="Football">Football</option>
+        <option value="Cricket">Cricket</option>
 	</select>
-<br>
-		<select id="player2" class="selectpicker" >
-		  <option>Select Player</option>  
+<br><br><br>
+	<form>
+		<select id="player2" class="selectpicker"  
+		multiple title="Choose multiple of the following..." 
+		data-style="btn-primary"
+		data-selected-text-format="count">
+		  
 		</select>
+		 <input type="submit" id="add">Send 
 
+	</form>
 </div>
 
 
