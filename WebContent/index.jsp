@@ -9,11 +9,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+
+
+
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />  
     <script	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+	
+	
 	<link rel="stylesheet" href="css/c_css.css">
-	<script src="js/js.js"></script>    
+	<script src="js/c_js.js"></script>    
+	
 </head>
 
 <body class="c_body">
@@ -26,11 +37,14 @@
 				<hr>
 				<div>
 				<p id="c_p_intro">This website allows for</p>
+				</div>
 			</div>
-				
-	<div id="input2">
+		</div>
+		
+		<div class="row">
+	<div id="input2"  class="c_container_inner well">
 		<form class="form-horizontal" role="form">
-		<div class="form-group well">
+		<div class="form-group">
 			<label for="l_getCapabilitesURL" class="col-sm-2 control-label">GetCapabilites	URL</label>
 
 			<div class="col-sm-10 input-group">			
@@ -43,15 +57,13 @@
 				<span class="input-group-btn">
 					<button id="b_submit1" type="button" class="btn btn-primary">Submit</button>
 				</span>			
-				<span class="input-group-btn">
-					<button id="b_submit2" type="button" class="btn btn-primary">Submit</button>
-				</span>		
+	
 				
 			</div>
 		</div>
 		
-		<div class="form-group">
-			<label for="label_response" class="col-sm-2 control-label">Response</label>
+		<div class="form-group ">
+			<label for="label_response" class="col-sm-2 control-label textleft pull-left">Response</label>
 
 			<div class="col-sm-7 input-group">
 				<textarea class="form-control" id="exampleTextarea" rows="10"></textarea>
@@ -59,6 +71,64 @@
 		</div>
 		</form>
 </div>
+</div>
+
+
+<div id="dropdown2" class="well">
+	<select id="sports2" class="selectpicker show-tick">
+	 <option>Select Sports</option>
+	                <option value="Football">Football</option>
+	                <option value="Cricket">Cricket</option>
+	</select>
+<br>
+		<select id="player2" class="selectpicker" >
+		  <option>Select Player</option>  
+		</select>
+
+</div>
+
+
+
+
+<div id="dropdown" class="container well">
+<h3>dropdown: AJAX in Servlet using JQuery and JSON</h3>
+        Select Favorite Sports:
+        
+        <select id="sports">
+                <option>Select Sports</option>
+                <option value="Football">Football</option>
+                <option value="Cricket">Cricket</option>
+        </select>
+        <br /> <br /> 
+        Select Favorite Player:
+        <select id="player"  multiple="multiple" size="3">
+                <option>Select Player</option>
+        </select>
+</div>
+
+
+
+
+
+
+<div id="dropdown_procedure">
+<div id="dropdown" class="container well">
+<h3>dropdown: AJAX in Servlet using JQuery and JSON</h3>
+        Select Favorite Sports:
+        <select id="sports">
+                <option>Select Sports</option>
+                <option value="Football">Football</option>
+                <option value="Cricket">Cricket</option>
+        </select>
+        <br /> <br /> 
+        Select Favorite Player:
+        <select id="player"  multiple="multiple" size="3">
+                <option>Select Player</option>
+        </select>
+</div>
+
+</div>
+
 
 
 <div class="container">
@@ -378,10 +448,11 @@ dropdown
     
 
 
-
+<!-- 
     <script src="http://cdn.kendostatic.com/2014.1.318/js/jquery.min.js"></script>
     <script src="http://protostrap.com/Assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="http://wenzhixin.net.cn/p/bootstrap-table/src/bootstrap-table.js" type="text/javascript"></script>
+     -->
 
     <script src="http://protostrap.com/Assets/inputmask/js/jquery.inputmask.js" type="text/javascript"></script>
     <script src="http://cdn.kendostatic.com/2014.1.318/js/kendo.all.min.js"></script>
@@ -389,5 +460,6 @@ dropdown
     <script src="http://protostrap.com/Assets/parsely/2.0/parsley.js" type="text/javascript"></script>
     <script src="http://protostrap.com/Assets/download.js" type="text/javascript"></script>
     <script src="http://protostrap.com/Assets/protostrap.js" type="text/javascript"></script>
+    
 </body>
 </html>
