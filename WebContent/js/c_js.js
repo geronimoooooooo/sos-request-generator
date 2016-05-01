@@ -6,6 +6,8 @@ $(document).ready(function() {
 
 	$('.selectpicker').selectpicker({
 	  //style: 'btn-default',
+		  //,size: "auto" //false
+		  //  ,width: "150px"
 	  size: 7
 	});
 	

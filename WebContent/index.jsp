@@ -85,7 +85,8 @@
 		<select id="player2" class="selectpicker"  
 		multiple title="Choose multiple of the following..." 
 		data-style="btn-primary"
-		data-selected-text-format="count">
+		data-selected-text-format="count"
+		data-actions-box="true">
 		  
 		</select>
 		 <input type="submit" id="add">Send 
