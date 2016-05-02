@@ -1,1 +1,3 @@
-/build/
+/servlet2jsp/
+
+#*.war
