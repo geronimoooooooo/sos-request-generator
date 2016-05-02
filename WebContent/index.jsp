@@ -57,7 +57,7 @@
 								style="width: 0px; padding-left: 0px; padding-right: 0px; border: none;"></span>
 
 							<span class="input-group-btn">
-								<button id="b_submitGetCapabilities" type="button"
+								<button id="b_submitGetCapabilities2" type="button"
 									class="btn btn-primary">Submit</button>
 							</span>
 						</div>
