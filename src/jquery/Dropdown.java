@@ -38,17 +38,16 @@ public class Dropdown extends HttpServlet {
         List<String> list = new ArrayList<String>();
         String json = null;
 System.out.println("sportsName"+sportsName);
-        if (sportsName.equals("Football")) {
-                list.add("Lionel Messi");
-                list.add("Cristiano Ronaldo");
-                list.add("David Beckham");
-                list.add("Diego Maradona");
-                list.add("https://gist.githubusercontent.com/geronimoooooooo/a916893a267fbd2b2701/raw/39d85d6b67fc2cb7abce16a5fc8ccebba11692c5/multi.geojson");
-        } else if (sportsName.equals("Cricket")) {
-                list.add("Sourav Ganguly");
-                list.add("Sachin Tendulkar");
-                list.add("Lance Klusener");
-                list.add("Michael Bevan");
+
+        if (sportsName.equals("Blaueis")) {
+                list.add("Temperatur");
+                list.add("Niederschlag");
+                list.add("Windgeschwindigkeit");
+        } else if (sportsName.equals("Godzilla")) {
+                list.add("Size");
+                list.add("Atomic Breath");
+                list.add("Ghidorah");
+                list.add("Mothra");
         } else if (sportsName.equals("Select Sports")) {
                 list.add("Select Player");
         }

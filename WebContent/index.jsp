@@ -11,7 +11,6 @@
     <meta name="author" content="">
 
 
-
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />  
     <script	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -20,84 +19,127 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-	
+	<link rel="stylesheet" href="css/jquery.toast.min.css">
+	<script src="js/jquery.toast.min.js"></script>	
 	
 	<link rel="stylesheet" href="css/c_css.css">
 	<script src="js/c_js.js"></script>    
 	
 </head>
 
-<body class="c_body">
+<body class="c_body ">
     
-    <div class="container c_container">
+    <div class="container c_container box_shadow ">
         <div class="row">
 
 			<div class="c_container_inner">
 				<h2>SOS Request Generator</h2>
 				<hr>
 				<div>
-				<p id="c_p_intro">This website allows for</p>
+				<p id="c_p_intro">do stuff http://demo.pycsw.org/gisdata/csw?service=CSW&version=2.0.2&request=GetCapabilities&outputFormat=application/json</p>
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="row">
-	<div id="input2"  class="c_container_inner well">
-		<form class="form-horizontal" role="form">
-		<div class="form-group">
-			<label for="l_getCapabilitesURL" class="col-sm-2 control-label">GetCapabilites	URL</label>
+			<div id="input2" class="c_container_inner well">
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="l_getCapabilitesURL" class="col-sm-2 control-label">GetCapabilites URL</label>
 
-			<div class="col-sm-10 input-group">			
-				<input type="text" class="form-control"	id="input_getCapabilitesURL"
-					value="https://gist.githubusercontent.com/geronimoooooooo/a916893a267fbd2b2701/raw/39d85d6b67fc2cb7abce16a5fc8ccebba11692c5/multi.geojson"
-					placeholder="provide the URL to request a GetCapabilites">
-					 <!-- <span class="input-group-addon"></span> -->
-					 <span class="input-group-addon" style="width:0px; padding-left:0px; padding-right:0px; border:none;"></span>
+						<div class="col-sm-10 input-group">
+							<input type="text" class="form-control"
+								id="input_getCapabilitesURL"
+								value="https://gist.githubusercontent.com/geronimoooooooo/a916893a267fbd2b2701/raw/39d85d6b67fc2cb7abce16a5fc8ccebba11692c5/multi.geojson"
+								placeholder="provide the URL to request a GetCapabilites">
+							<!-- <span class="input-group-addon"></span> -->
+							<span class="input-group-addon"
+								style="width: 0px; padding-left: 0px; padding-right: 0px; border: none;"></span>
+
+							<span class="input-group-btn">
+								<button id="b_submitGetCapabilities" type="button"
+									class="btn btn-primary">Submit</button>
+							</span>
+						</div>
+					</div>
+					<div class="form-group ">
+						<label for="label_response"
+							class="col-sm-2 control-label textleft pull-left">Response</label>
+
+						<div class="col-sm-7 input-group">
+							<textarea class="form-control" id="exampleTextarea" rows="10"></textarea>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="row">
+			<div id="procedures" class="c_container_inner well">
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="l_procedure" class="col-sm-2 control-label">Procedure</label>
+
+						<div class="col-sm-7 input-group">
+							<select id="sports2" class="selectpicker show-tick">
+								<option>Select a procedure</option>
+								<option value="Blaueis">Blaueis</option>
+								<option value="Godzilla">Godzilla</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group ">
+						<label for="l_observedProperty"
+							class="col-sm-2 control-label textleft pull-left">ObservedProperty</label>
+
+						<div class="col-sm-7 input-group">
+							<select id="player2" class="selectpicker" multiple
+								title="Choose multiple ObservedProperty" data-style="btn-info"
+								data-selected-text-format="count" data-actions-box="true">
+							</select>
+						</div>
+					</div>
 					
-				<span class="input-group-btn">
-					<button id="b_submit1" type="button" class="btn btn-primary">Submit</button>
-				</span>			
+					<div class="form-group ">
+						<div class="col-sm-9 input-group">
+						<button type="submit" id="add2" class="btn btn-primary pull-right">Submit</button>
+					</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+
+
+
+		<div>
+			
+			pull-right
+				<select id="sports2" class="selectpicker show-tick">
+					<option>Select a procedure</option>
+					<option value="Blaueis">Blaueis</option>
+					<option value="Godzilla">Godzilla</option>
+				</select> <br> <br> <br>
+				<form>
+					<select id="player2" class="selectpicker" multiple
+						title="Choose multiple ObservedProperty"
+						data-style="btn-info" data-selected-text-format="count"
+						data-actions-box="true">
+
+					</select> 
+					<input type="submit" id="add" class="btn btn-primary">
+
+				</form>
+			</div>
 	
-				
-			</div>
-		</div>
-		
-		<div class="form-group ">
-			<label for="label_response" class="col-sm-2 control-label textleft pull-left">Response</label>
 
-			<div class="col-sm-7 input-group">
-				<textarea class="form-control" id="exampleTextarea" rows="10"></textarea>
-			</div>
-		</div>
-		</form>
-</div>
-</div>
-
-
-<div id="dropdown2" class="well">
-	<select id="sports2" class="selectpicker show-tick">
-	 	<option>Select Sports</option>
-        <option value="Football">Football</option>
-        <option value="Cricket">Cricket</option>
-	</select>
-<br><br><br>
-	<form>
-		<select id="player2" class="selectpicker"  
-		multiple title="Choose multiple of the following..." 
-		data-style="btn-primary"
-		data-selected-text-format="count"
-		data-actions-box="true">
-		  
-		</select>
-		 <input type="submit" id="add">Send 
-
-	</form>
-</div>
+<div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:10%;left:50%;padding:2px;">
+<img src='img/demo_wait.gif' width="64" height="64" /><br>Loading..</div>
 
 
 
 
-<div id="dropdown" class="container well">
+		<div id="dropdown" class="container well">
 <h3>dropdown: AJAX in Servlet using JQuery and JSON</h3>
         Select Favorite Sports:
         
@@ -118,23 +160,6 @@
 
 
 
-<div id="dropdown_procedure">
-<div id="dropdown" class="container well">
-<h3>dropdown: AJAX in Servlet using JQuery and JSON</h3>
-        Select Favorite Sports:
-        <select id="sports">
-                <option>Select Sports</option>
-                <option value="Football">Football</option>
-                <option value="Cricket">Cricket</option>
-        </select>
-        <br /> <br /> 
-        Select Favorite Player:
-        <select id="player"  multiple="multiple" size="3">
-                <option>Select Player</option>
-        </select>
-</div>
-
-</div>
 
 
 
