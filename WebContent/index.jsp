@@ -110,6 +110,18 @@
 		</div>
 
 
+<div class="panel-group c_panel">
+	<div class="panel panel-primary">
+    	<div class="panel-heading">SOS GetObservation Request</div>
+	    	<div class="panel-body">
+	    	<div class="col-sm-12 input-group c_textArea">
+				<textarea class="form-control " id="text_getObservationRequest" rows="10"></textarea>
+			</div>
+    	</div>
+    </div>
+</div>
+
+
 
 
 		<div>
