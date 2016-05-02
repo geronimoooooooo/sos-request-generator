@@ -33,7 +33,7 @@
         <div class="row">
 
 			<div class="c_container_inner">
-				<h2>SOS Request Generator</h2>
+				<h2 id="header_sos">SOS Request Generator</h2>
 				<hr>
 				<div>
 				<p id="c_p_intro">do stuff http://demo.pycsw.org/gisdata/csw?service=CSW&version=2.0.2&request=GetCapabilities&outputFormat=application/json</p>
@@ -115,7 +115,7 @@
     	<div class="panel-heading">SOS GetObservation Request</div>
 	    	<div class="panel-body">
 	    	<div class="col-sm-12 input-group c_textArea">
-				<textarea class="form-control " id="text_getObservationRequest" rows="10"></textarea>
+				<textarea class="form-control c_textArea" id="text_getObservationRequest" rows="10"></textarea>
 			</div>
     	</div>
     </div>

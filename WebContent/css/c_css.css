@@ -10,7 +10,9 @@
 	margin-top: 15px;
 	margin-bottom: 15px;-->  
 }
-
+#header_sos {
+	 margin-top: 50px;
+}
 .c_container {
 	 background-color:  white;
 	 width: 1100px;
@@ -20,8 +22,8 @@
 }
 
 .c_textArea {
-	padding-left: -0px;
-	margin-left: -0px;
+	margin-top: -8px;
+	margin-left: -8px;
 }
 .c_panel{
 	margin-top: 50px;
