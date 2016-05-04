@@ -66,7 +66,7 @@
 						<label for="label_response"
 							class="col-sm-2 control-label textleft pull-left">Response</label>
 
-						<div class="col-sm-7 input-group">
+						<div class="col-sm-10 input-group">
 							<textarea class="form-control" id="exampleTextarea" rows="10"></textarea>
 						</div>
 					</div>
@@ -80,11 +80,11 @@
 					<div class="form-group">
 						<label for="l_procedure" class="col-sm-2 control-label">Procedure</label>
 
-						<div class="col-sm-7 input-group">
+						<div class="col-sm-10 input-group">
 							<select id="sports2" class="selectpicker show-tick">
 								<option>Select a procedure</option>
-								<option value="Blaueis">Blaueis</option>
-								<option value="Godzilla">Godzilla</option>
+								
+								
 							</select>
 						</div>
 					</div>
@@ -92,7 +92,7 @@
 						<label for="l_observedProperty"
 							class="col-sm-2 control-label textleft pull-left">ObservedProperty</label>
 
-						<div class="col-sm-7 input-group">
+						<div class="col-sm-10 input-group">
 							<select id="player2" class="selectpicker" multiple
 								title="Choose multiple ObservedProperty" data-style="btn-info"
 								data-selected-text-format="count" data-actions-box="true">
@@ -101,8 +101,8 @@
 					</div>
 					
 					<div class="form-group ">
-						<div class="col-sm-9 input-group">
-						<button type="submit" id="add2" class="btn btn-primary pull-right">Submit</button>
+						<div class="col-sm-12 input-group">
+						<button type="button" id="createRequest" class="btn btn-primary pull-right">Create request</button>
 					</div>
 					</div>
 				</form>
@@ -115,7 +115,10 @@
     	<div class="panel-heading">SOS GetObservation Request</div>
 	    	<div class="panel-body">
 	    	<div class="col-sm-12 input-group c_textArea">
-				<textarea class="form-control c_textArea" id="text_getObservationRequest" rows="10"></textarea>
+				<textarea class="form-control c_textArea" id="text_getObservationRequest" rows="10">				
+
+
+				</textarea>
 			</div>
     	</div>
     </div>
@@ -145,10 +148,11 @@
 			</div>
 	
 
-<div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:10%;left:50%;padding:2px;">
+<div id="wait2" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:35%;left:50%;padding:2px;">
 <img src='img/demo_wait.gif' width="64" height="64" /><br>Loading..</div>
 
-
+<div id="wait" style="z-index:1000;display:none;width:640px;height:640px;border:1px solid black;position:absolute;top:15%;left:30%;padding:2px;">
+<img src='img/godzilla_happy.gif' width="640" height="640" /><br>Loading..</div>
 
 
 		<div id="dropdown" class="container well">
@@ -195,14 +199,6 @@
   </div>  
 </form>
 </div>
-
-
-
-
-
-
-
-
 
 
 

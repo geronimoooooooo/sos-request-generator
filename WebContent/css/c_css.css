@@ -24,6 +24,10 @@
 .c_textArea {
 	margin-top: -8px;
 	margin-left: -8px;
+
+}
+textarea { 
+	resize:vertical; <!--will prevent resizing horizontally--> 
 }
 .c_panel{
 	margin-top: 50px;

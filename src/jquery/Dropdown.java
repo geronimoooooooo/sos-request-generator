@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import sos.GetCapabilitiesSos;
+
 /**
  * Servlet implementation class Dropdown
  */
@@ -32,13 +34,20 @@ public class Dropdown extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doGet()");
-		String [] stray = request.getParameterValues("sportsName");
-		System.out.println(request.getParameterValues("sportsName"));
-		String sportsName = request.getParameter("sportsName");
+		//String [] stray = request.getParameterValues("sportsName");
+		System.out.println(request.getParameterValues("procedureUrn"));
+		String procedureUrn = request.getParameter("procedureUrn");
         List<String> list = new ArrayList<String>();
-        String json = null;
-System.out.println("sportsName"+sportsName);
+        List<String> list_observedProperty = new ArrayList<String>();
+         
+System.out.println("procedureUrn: "+procedureUrn);
 
+		for(int i=0; i<GetCapabilitiesSos.list_procedures.size();i++){
+			if(GetCapabilitiesSos.list_procedures.get(i).procedureUrn.equalsIgnoreCase(procedureUrn)){
+				list.addAll(GetCapabilitiesSos.list_procedures.get(i).list_observedProperty);
+			}
+		}
+/*
         if (sportsName.equals("Blaueis")) {
                 list.add("Temperatur");
                 list.add("Niederschlag");
@@ -51,8 +60,9 @@ System.out.println("sportsName"+sportsName);
         } else if (sportsName.equals("Select Sports")) {
                 list.add("Select Player");
         }
+        */
 
-        json = new Gson().toJson(list);
+        String json = new Gson().toJson(list);
         response.setContentType("application/json");
         response.getWriter().write(json);
 	}
