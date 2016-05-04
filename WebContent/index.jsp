@@ -23,7 +23,16 @@
 	<script src="js/jquery.toast.min.js"></script>	
 	
 	<link rel="stylesheet" href="css/c_css.css">
-	<script src="js/c_js.js"></script>    
+	<script src="js/c_js.js"></script>   
+	
+	<link rel="stylesheet" href="css/codemirror.css">
+	<link rel="stylesheet" href="css/ambiance.css">
+	<link rel="stylesheet" href="css/elegant.css">
+		<script src="js/codemirror.js"></script>
+		<script src="js/javascript.js"></script> 
+		<script src="js/xml.js"></script> 
+		<script src="js/vkbeautify.0.99.00.beta.js"></script> 
+					  
 	
 </head>
 
@@ -31,6 +40,33 @@
     
     <div class="container c_container box_shadow ">
         <div class="row">
+        
+        <div class="clearfix" >
+		  <div style="float: right;">
+		  <a href="#"><span style="font-size:1.5em;"  class="glyphicon glyphicon-cog fa-5x" data-toggle="modal" data-target="#myModal"></span></a>
+		  </div>
+		</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">SOS Request Generator Settings</h4>
+      </div>
+      <div class="modal-body">
+   				
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 			<div class="c_container_inner">
 				<h2 id="header_sos">SOS Request Generator</h2>
@@ -44,12 +80,11 @@
 		<div class="row">
 			<div id="input2" class="c_container_inner well">
 				<form class="form-horizontal" role="form">
-					<div class="form-group">
+					<div class="form-group ">
 						<label for="l_getCapabilitesURL" class="col-sm-2 control-label">GetCapabilites URL</label>
-
-						<div class="col-sm-10 input-group">
-							<input type="text" class="form-control"
-								id="input_getCapabilitesURL"
+						
+						<div class="col-sm-10 input-group "><!--um die inputbox noch kleiner zu machen form-group-sm-->
+							<input type="text" class="form-control"	id="input_getCapabilitesURL"
 								value="https://gist.githubusercontent.com/geronimoooooooo/a916893a267fbd2b2701/raw/39d85d6b67fc2cb7abce16a5fc8ccebba11692c5/multi.geojson"
 								placeholder="provide the URL to request a GetCapabilites">
 							<!-- <span class="input-group-addon"></span> -->
@@ -58,18 +93,18 @@
 
 							<span class="input-group-btn">
 								<button id="b_submitGetCapabilities2" type="button"
-									class="btn btn-primary">Submit</button>
+									class="btn btn-primary">Get data</button>
 							</span>
 						</div>
 					</div>
-					<div class="form-group ">
-						<label for="label_response"
-							class="col-sm-2 control-label textleft pull-left">Response</label>
+<!-- 					<div class="form-group "> -->
+<!-- 						<label for="label_response" -->
+<!-- 							class="col-sm-2 control-label textleft pull-left">Response</label> -->
 
-						<div class="col-sm-10 input-group">
-							<textarea class="form-control" id="exampleTextarea" rows="10"></textarea>
-						</div>
-					</div>
+<!-- 						<div class="col-sm-10 input-group"> -->
+<!-- 							<textarea class="form-control" id="exampleTextarea2" rows="10"></textarea> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 				</form>
 			</div>
 		</div>
@@ -82,9 +117,7 @@
 
 						<div class="col-sm-10 input-group">
 							<select id="sports2" class="selectpicker show-tick">
-								<option>Select a procedure</option>
-								
-								
+								<option>Select a procedure</option>								
 							</select>
 						</div>
 					</div>
@@ -94,35 +127,40 @@
 
 						<div class="col-sm-10 input-group">
 							<select id="player2" class="selectpicker" multiple
-								title="Choose multiple ObservedProperty" data-style="btn-info"
+								title="Choose multiple ObservedProperty" data-style="btn-default"
 								data-selected-text-format="count" data-actions-box="true">
 							</select>
 						</div>
-					</div>
-					
-					<div class="form-group ">
-						<div class="col-sm-12 input-group">
-						<button type="button" id="createRequest" class="btn btn-primary pull-right">Create request</button>
-					</div>
-					</div>
+					</div>					
 				</form>
 			</div>
 		</div>
 
 
-<div class="panel-group c_panel">
-	<div class="panel panel-primary">
-    	<div class="panel-heading">SOS GetObservation Request</div>
-	    	<div class="panel-body">
-	    	<div class="col-sm-12 input-group c_textArea">
-				<textarea class="form-control c_textArea" id="text_getObservationRequest" rows="10">				
+		<div class="panel-group c_panel">
+			<div class="panel panel-primary">
+		    	<div class="panel-heading">SOS GetObservation Request</div>
+			    	<div class="panel-body">
+			    	<div class="col-sm-12 input-group c_textArea">
+						<textarea class="form-control c_textArea" id="exampleTextarea" rows="5"></textarea>
+					</div>
+		    	</div>
+		    </div>
+		</div>
 
 
-				</textarea>
+		<div class="row" style="margin-right: 5px;">
+			<div class="c_container_inner">
+				<form class="form-horizontal" role="form">
+					<div class="form-group ">
+						<div class="col-sm-12 input-group">
+							<button type="button" id="createRequest" class="btn btn-primary pull-right">Create request</button>
+						</div>
+					</div>		
+				</form>
 			</div>
-    	</div>
-    </div>
-</div>
+		</div>
+
 
 
 
@@ -148,10 +186,10 @@
 			</div>
 	
 
-<div id="wait2" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:35%;left:50%;padding:2px;">
+<div id="div_wait" style="z-index:1001;display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:30%;left:46%;padding:2px;">
 <img src='img/demo_wait.gif' width="64" height="64" /><br>Loading..</div>
 
-<div id="wait" style="z-index:1000;display:none;width:640px;height:640px;border:1px solid black;position:absolute;top:15%;left:30%;padding:2px;">
+<div id="div_godzilla" style="z-index:1000;display:none;width:640px;height:640px;border:1px solid black;position:absolute;top:15%;left:30%;padding:2px;">
 <img src='img/godzilla_happy.gif' width="640" height="640" /><br>Loading..</div>
 
 

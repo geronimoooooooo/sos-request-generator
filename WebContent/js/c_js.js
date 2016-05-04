@@ -11,11 +11,11 @@ $(document).ready(function() {
 	  size: 10
 	});
 	
-	
-	//dropdown
+	var procedureUrn ="";
+	//dropdown procedure
 	$('#sports2').change(function(event) {
 		console.log("sports2");
-		var procedureUrn = $("select#sports2").val();
+		procedureUrn = $("select#sports2").val();
 		$.get('Dropdown', {
 			procedureUrn : procedureUrn
 		}, function(response) {
@@ -32,31 +32,134 @@ $(document).ready(function() {
 	});
 	
 	
+	
+	
+	
+	var config, editor;
+	
+	var requestComplete="";
+	var reqXmlHeader ="<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+	var reqEnvelope ="\n\t<env:Envelope " +
+					"xmlns:env=\"http://www.w3.org/2003/05/soap-envelope\" \
+					\n\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \
+					\n\txsi:schemaLocation=\"http://www.w3.org/2003/05/soap-envelope http://www.w3.org/2003/05/soap-envelope/soap-envelope.xsd\">";
+	
+	var reqBodyObs ="\n\t<env:Body>"+ 
+        "\n\t\t<sos:GetObservation" +
+            "\n\t\txmlns:sos=\"http://www.opengis.net/sos/2.0\" "+
+            "\n\t\txmlns:fes=\"http://www.opengis.net/fes/2.0\" "+
+            "\n\t\txmlns:gml=\"http://www.opengis.net/gml/3.2\" "+
+            "\n\t\txmlns:swe=\"http://www.opengis.net/swe/2.0\" " +
+            "\n\t\txmlns:xlink=\"http://www.w3.org/1999/xlink\" "+
+            "\n\t\txmlns:swes=\"http://www.opengis.net/swes/2.0\" service=\"SOS\" version=\"2.0.0\""+
+            "\n\t\txsi:schemaLocation=\"http://www.opengis.net/sos/2.0 http://schemas.opengis.net/sos/2.0/sos.xsd\">";
+	
+	var mergeObservations="<swes:extension><swe:Boolean definition=\"MergeObservationsIntoDataArray\"><swe:value>true</swe:value></swe:Boolean></swes:extension>";
+	var reqEnding = " \n\t\t\t<sos:responseFormat>http://www.opengis.net/om/2.0 </sos:responseFormat>        \n\t\t</sos:GetObservation>    \n\t</env:Body>\n</env:Envelope>";
+		
+	$("#fillTextAreaReset").click(function(){
+		editor.toTextArea();
+	//	editor.refresh();
+		document.getElementById("exampleTextarea").value="test";
+	});
+				
+	var str="Hi, ja du hast da vollkommen Recht. Muss das mit den Zeiten in den Griff bekommen. War z.B. am Dienstag nicht in Büro, aber dafür, von Mittag Dienstag bis 8 Uhr in der Früh Mittwoch durchprogrammiert, weil ich das mit"+
+	"einfach funktionstüchtig bringen wollte. Sieht halt keiner, dass ich da den Mittag, Nachmittag, Abend und Nacht durchprogrammiert habe. Und das mit der Lautstärke wird sich schon legen, wenn wieder " +
+	"jeder/jede seiner/ihrer ARbeit wieder eher \"alleine\" nachgeht"
+		
 	var data = {};
 	var list_observedProopertySelected;
 	var str_observedProopertySelected;
-		$("#createRequest").click(function() {
+	
+	function observedPropertyNeeded(){
+		$.toast({
+		    text: "<h2>Please select an observedProperty!</h2>", // Text that is to be shown in the toast
+		    heading: 'Warning', // Optional heading to be shown on the toast
+		    icon: 'error', // Type of toast icon
+		    showHideTransition: 'fade', // fade, slide or plain
+		    allowToastClose: true, // Boolean value true or false
+		    hideAfter: 4000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+		    stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+		    position: 'top-center', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+		    
+		    
+		    
+		    textAlign: 'left',  // Text alignment i.e. left, right or center
+		    loader: true,  // Whether to show loader or not. True by default
+		    loaderBg: '#9EC600',  // Background color of the toast loader
+		    beforeShow: function () {}, // will be triggered before the toast is shown
+		    afterShown: function () {}, // will be triggered after the toat has been shown
+		    beforeHide: function () {}, // will be triggered before the toast gets hidden
+		    afterHidden: function () {}  // will be triggered after the toast has been hidden
+		});
+	}
+	
+		$("#createRequest").click(function() {				
+			 if(editor !=undefined){
+			    	editor.toTextArea();
+			    	editor.refresh();
+			    	document.getElementById("exampleTextarea").value="";
+		    	}
+			 
 			console.log("Button#createRequest");
 			var select2 = $('#player2');
 			select2.each(function(el) {
 			//	alert($(this).val())
 				str_observedProopertySelected= ($(this).val());
 				data[$(this).attr("observedProperty")] = $(this).val();
-				//console.log($(this).val());
-				
+				//console.log($(this).val());				
 			});
+			
 			console.log("str: "+str_observedProopertySelected);
+			if(str_observedProopertySelected==null){
+				//alert("Please select an ObservedProperty! todo toast");
+				observedPropertyNeeded();
+			}else{			
+			
+			requestComplete = "";
+			requestComplete += reqXmlHeader;
+			requestComplete += reqEnvelope;		
+			requestComplete += reqBodyObs;
+			requestComplete += mergeObservations;
+			
+			var reqProcedure="\n\n";
+			reqProcedure += "\t\t\t<sos:procedure>"+procedureUrn+"</sos:procedure>\n";
+				
 			var arr="a,b,c,d";
 			list_observedProopertySelected = str_observedProopertySelected.toString().split(",");
 			console.log("list_observedProopertySelected[0] :"+list_observedProopertySelected[0]);
-			$("#exampleTextarea").text="..............";
-			 $("#exampleTextarea").append("your text to append");
+			
+			var reqProperty ="\n";
 			for(i=0; i < list_observedProopertySelected.length; i++){
-				$("#exampleTextarea").append("\n");
-				$("#exampleTextarea").append("&lt;sos:observedProperty&gt;");
-				$("#exampleTextarea").append(list_observedProopertySelected[i]);
-				$("#exampleTextarea").append("&lt;/sos:observedProperty&gt;");
-			}
+				reqProperty +="\t\t\t<sos:observedProperty>"+list_observedProopertySelected[i]+"</sos:observedProperty>\n";
+			}		
+			requestComplete +=reqProcedure;
+			requestComplete +=reqProperty;
+			requestComplete += reqEnding;
+		//	$(exampleTextarea).val(requestComplete);
+		    
+			var xml_vkbeautified =vkbeautify.xml(requestComplete);
+		  //  console.log(xml_vkbeautified);
+		    $(exampleTextarea).val(xml_vkbeautified);
+			
+//			 var config, editor;
+
+			    config = {		    		
+			        lineNumbers: true,
+			        mode: "text/javascript",
+			        lineWrapping: true,
+			        htmlMode: true,
+			        matchClosing: true,
+//			        theme: "elegant",		      
+			        indentWithTabs: true,
+			        readOnly: true
+			    };
+			   
+			    editor = CodeMirror.fromTextArea(document.getElementById("exampleTextarea"), config);
+			    editor.setSize(900,"100%");
+					
+
+
 			//$("#exampleTextarea").text(list_observedProopertySelected[0]);
 			//$("#exampleTextarea").append("\n"+list_observedProopertySelected[1]);
 			
@@ -69,6 +172,7 @@ $(document).ready(function() {
 				success : function(msg) {
 				}
 			});
+			}//else
 
 		}); 
 	
@@ -235,12 +339,18 @@ $(document).ready(function() {
 	});
 
     $(document).ajaxStart(function(){
-        $("#wait").css("display", "block");
+        $("#div_wait").css("display", "block");
+        $("#div_godzilla").css("display", "block");
+        
         
     });
     
     $(document).ajaxComplete(function(){
-        $("#wait").css("display", "none");
+        $("#div_wait").css("display", "none");
+        $("#div_godzilla").css("display", "none");
+        
+        var name="kieran";
+        
    	 $.toast({
 		    heading: 'Success',
 		    text: 'Request was successful.',
