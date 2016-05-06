@@ -4,6 +4,8 @@
 $(document).ready(function() {
 	
 
+	// $("#div_response").hide();
+	 
 	$('.selectpicker').selectpicker({
 	  //style: 'btn-default',
 		  //,size: "auto" //false
@@ -36,7 +38,8 @@ $(document).ready(function() {
 	
 	
 	var config, editor;
-	
+	var xml_vkbeautified;
+	var xml_vkbeautified2;
 	var requestComplete="";
 	var reqXmlHeader ="<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 	var reqEnvelope ="\n\t<env:Envelope " +
@@ -138,7 +141,7 @@ $(document).ready(function() {
 			requestComplete += reqEnding;
 		//	$(exampleTextarea).val(requestComplete);
 		    
-			var xml_vkbeautified =vkbeautify.xml(requestComplete);
+			xml_vkbeautified =vkbeautify.xml(requestComplete);
 		  //  console.log(xml_vkbeautified);
 		    $(exampleTextarea).val(xml_vkbeautified);
 			
@@ -173,9 +176,113 @@ $(document).ready(function() {
 				}
 			});
 			}//else
+			$("#div_response").show();
 
 		}); 
-	
+		var config2, editor2;
+		var xml_resp ="";
+		$("#sendCreatedRequest").click(function() {		
+			xml_resp ="";
+			 if(editor2 !=undefined){
+			    	editor2.toTextArea();
+			    	editor2.refresh();
+			    	document.getElementById("textAresponse_getObservation").value="";
+		    	}
+			 
+			var url = $("#input_getCapabilitesURL").val();
+			var xml= $(exampleTextarea).val()
+			console.log("this is xml_vkbeautified: "+xml );
+		 	$.ajax({
+		 	    // The URL for the request //"post.php"
+		 	    url: 'GetObservationResponse',
+		 	    // The data to send (will be converted to a query string)
+		 	    data: {"url":url, "xml":xml},
+//		 	    	  "request": "GetCapabilities",
+//		 	    	  "service": "SOS"
+//		 	    	},
+		 	    // Whether this is a POST or "GET" request
+		 	    type: "POST",
+		 	    // The type of data we expect back //"json" //"text"
+		 	    dataType : "text",
+		 	    success: function(xml){
+		 	    	console.log("success:"+xml);
+		 	    	xml_resp = xml;
+		 	    	
+		 	    	xml_vkbeautified2 =vkbeautify.xml(xml_resp);
+		 			  //  console.log(xml_vkbeautified);
+		 			    $("#textAresponse_getObservation").val(xml_vkbeautified2);
+		 			   
+		 			   
+					    config2 = {		    		
+					        lineNumbers: true,
+					        mode: "text/javascript",
+					        lineWrapping: true,
+					        htmlMode: true,
+					        matchClosing: true,
+//					        theme: "elegant",		      
+					        indentWithTabs: true,
+					        readOnly: true
+					    };
+					   
+					    editor2 = CodeMirror.fromTextArea(document.getElementById("textAresponse_getObservation"), config2);
+					    editor2.setSize(900,"100%");
+		 			    
+		 			    
+		 	    }
+		 	   
+		 	})
+		 	  // Code to run if the request succeeds (is done);
+		 	  // The response is passed to the function
+		 	  .done(function( returnedData ) {
+		 //		 console.log("returned: "+returnedData);
+		// 	$("#textAresponse_getObservation").val(returnedData);
+		 		
+		 		 
+		 	  })
+		 	  // Code to run if the request fails; the raw request and
+		 	  // status codes are passed to the function
+		 	  .fail(function( xhr, status, errorThrown ) {
+		 	    alert( "Sorry, there was a problem!" );
+		 	    console.log( "Error: " + errorThrown );
+		 	    console.log( "Status: " + status );
+		 	    console.dir( xhr );
+		 	  })
+		 	  // Code to run regardless of success or failure;
+		 	  .always(function( xhr, status ) {
+		 	//    alert( "The request is complete!" );
+		 	  });
+		 	
+		 console.log("xml_resp: "+xml_resp);	 		
+
+			
+		
+//			 
+			console.log("Button#sendCreatedRequest");
+		    
+			
+			
+			
+			//    editor.setValue("fuuuuuuuuu"+xml_vkbeautified2);
+			
+		
+		
+
+		}); 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 	
 	$("#b_submitGetCapabilities2").click(function() {
@@ -340,15 +447,14 @@ $(document).ready(function() {
 
     $(document).ajaxStart(function(){
         $("#div_wait").css("display", "block");
-        $("#div_godzilla").css("display", "block");
+      //  $("#div_godzilla").css("display", "block");
         
         
     });
     
     $(document).ajaxComplete(function(){
         $("#div_wait").css("display", "none");
-        $("#div_godzilla").css("display", "none");
-        
+    //    $("#div_godzilla").css("display", "none");
         var name="kieran";
         
    	 $.toast({

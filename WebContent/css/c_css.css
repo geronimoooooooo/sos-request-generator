@@ -50,7 +50,9 @@ textarea {
 	margin-left: 30px;
 	margin-right: 30px;
 }
-
+#div_response {
+	display: none;
+}
 #c_p_intro {
 	margin-top: -10px;
 	margin-bottom: 20px;

@@ -25,14 +25,14 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
-import org.slf4j.LoggerFactory;
+//import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import ch.qos.logback.classic.Logger;
+//import ch.qos.logback.classic.Logger;
 import sos.GetCapabilitiesSos;
 import sos.Procedure;
 
@@ -40,7 +40,7 @@ import org.xml.sax.InputSource;
 
 public class ParserGetCapa {
 	
-	Logger logger = (Logger) LoggerFactory.getLogger(getClass().getName());
+	//Logger logger = (Logger) LoggerFactory.getLogger(getClass().getName());
 	
 	public void parseGetCapabilitiesXml(String getCapabilitiesResponse){
 		
@@ -102,7 +102,7 @@ public class ParserGetCapa {
 			System.out.println("procedure: "+node_procedure_href.getTextContent());
 			*/
 					
-			logger.debug("sind da: "+ getCapabilitiesResponse);
+	//		logger.debug("sind da: "+ getCapabilitiesResponse);
 			
 			String path_version = "/soap:Envelope/soap:Body/sos:Capabilities/@version";
 			Node node_version = (Node)xPath.compile(path_version).evaluate(doc, XPathConstants.NODE);
@@ -133,11 +133,11 @@ public class ParserGetCapa {
 			}
 			
 			for(Procedure p: GetCapabilitiesSos.list_procedures){
-				logger.debug("procedureURN: "+p.procedureUrn);
+	//			logger.debug("procedureURN: "+p.procedureUrn);
 				for(String s:p.list_observedProperty){
-					logger.debug(s);
+		//			logger.debug(s);
 				}
-				logger.debug("########################################################");
+			//	logger.debug("########################################################");
 			}
 			
 			//list_procedures.forEach(e->logger.debug(e));
@@ -153,7 +153,7 @@ public class ParserGetCapa {
 			}
 			
 			
-			procedure.list_observedProperty.forEach(e->logger.debug(e));
+	//		procedure.list_observedProperty.forEach(e->logger.debug(e));
 			
 			
 			
@@ -167,7 +167,7 @@ public class ParserGetCapa {
 			
 			
 			
-			
+			/*
 			
 			
 			
@@ -244,8 +244,7 @@ public class ParserGetCapa {
 			//	System.out.println("nameeeeeeee: "+ n2.getTextContent());
 				
 				
-				
-			}
+			
 			
 			} catch (ParserConfigurationException e1) {
 				// TODO Auto-generated catch block

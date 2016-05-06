@@ -57,7 +57,7 @@
         <h4 class="modal-title" id="myModalLabel">SOS Request Generator Settings</h4>
       </div>
       <div class="modal-body">
-   				
+   				...settings here...
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -72,7 +72,12 @@
 				<h2 id="header_sos">SOS Request Generator</h2>
 				<hr>
 				<div>
-				<p id="c_p_intro">do stuff http://demo.pycsw.org/gisdata/csw?service=CSW&version=2.0.2&request=GetCapabilities&outputFormat=application/json</p>
+				<p id="c_p_intro">do stuff http://demo.pycsw.org/gisdata/csw?service=CSW&version=2.0.2&request=GetCapabilities&outputFormat=application/json <br>
+				https://gist.githubusercontent.com/geronimoooooooo/a916893a267fbd2b2701/raw/39d85d6b67fc2cb7abce16a5fc8ccebba11692c5/multi.geojson<br>
+				1. Press "Get data"<br>
+				2. Select 1 procedure<br>
+				3. Select 1-n observedProperty<br>
+				4. Press "Create request"</p>
 				</div>
 			</div>
 		</div>
@@ -85,7 +90,7 @@
 						
 						<div class="col-sm-10 input-group "><!--um die inputbox noch kleiner zu machen form-group-sm-->
 							<input type="text" class="form-control"	id="input_getCapabilitesURL"
-								value="https://gist.githubusercontent.com/geronimoooooooo/a916893a267fbd2b2701/raw/39d85d6b67fc2cb7abce16a5fc8ccebba11692c5/multi.geojson"
+								value="https://ispacevm30.researchstudio.at/focus/service"
 								placeholder="provide the URL to request a GetCapabilites">
 							<!-- <span class="input-group-addon"></span> -->
 							<span class="input-group-addon"
@@ -116,7 +121,7 @@
 						<label for="l_procedure" class="col-sm-2 control-label">Procedure</label>
 
 						<div class="col-sm-10 input-group">
-							<select id="sports2" class="selectpicker show-tick">
+							<select id="sports2" class="selectpicker show-tick" data-live-search="true">
 								<option>Select a procedure</option>								
 							</select>
 						</div>
@@ -160,10 +165,38 @@
 				</form>
 			</div>
 		</div>
+		
+		<div id="div_response" class="well"  >
+		<h2 class="text-center">Response</h2>
+		<p>Text text Godzilla ......<br>
+		1. Press "Send created request" to query the SOS server and recieve a GetObservation response.</p>
+		<div class="row" style="margin-right: 0px;">
+			<div class="c_container_inner">
+				<form class="form-horizontal" role="form">
+					<div class="form-group ">
+						<div class="col-sm-12 input-group">
+							<button type="button" id="sendCreatedRequest" class="btn btn-primary pull-right">Send created request</button>
+						</div>
+					</div>		
+				</form>
+			</div>
+		</div>
+		
+		
+		<div class="panel-group c_panel">
+			<div class="panel panel-primary">
+		    	<div class="panel-heading">RESPONSE to the GetObservation Request</div>
+			    	<div class="panel-body">
+			    	<div class="col-sm-12 input-group c_textArea">
+						<textarea class="form-control c_textArea" id="textAresponse_getObservation" rows="5"></textarea>
+					</div>
+		    	</div>
+		    </div>
+		</div>		
+</div>
 
 
-
-
+<br><br><br><br><br><br><br><br>
 
 		<div>
 			
