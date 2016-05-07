@@ -4,18 +4,18 @@
 $(document).ready(function() {
 	
 		
-		$('#check_tempFilter').prop('checked', true);
+	//	$('#check_tempFilter').prop('checked', true);
 		
 		if($('#check_tempFilter').is(':checked') ){
-			alert("checked!");
+		//	alert("checked!");
 		}
 		$('input#check_tempFilter').change(function () {
 		    if ($('input#check_tempFilter').is(':checked')) {
 		     //   $('input#Checkbox1').addClass('checked');
-		    	alert("box is checked");
+		    //	alert("box is checked");
 		    } else {
 		        //$('input#Checkbox1').removeClass('checked');
-		    	alert("box is NOET checked");
+		    	//alert("box is NOET checked");
 		    }
 		});
 		
