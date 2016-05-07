@@ -3,7 +3,67 @@
  */
 $(document).ready(function() {
 	
-
+		
+		$('#check_tempFilter').prop('checked', true);
+		
+		if($('#check_tempFilter').is(':checked') ){
+			alert("checked!");
+		}
+		$('input#check_tempFilter').change(function () {
+		    if ($('input#check_tempFilter').is(':checked')) {
+		     //   $('input#Checkbox1').addClass('checked');
+		    	alert("box is checked");
+		    } else {
+		        //$('input#Checkbox1').removeClass('checked');
+		    	alert("box is NOET checked");
+		    }
+		});
+		
+		
+		
+		
+		$("[data-toggle='tooltip']").tooltip({
+			//default ist ohne Inhalt in {} bezieht sich dann auf "focus" 
+			trigger : 'hover'
+		});
+	 
+		$('input[name="daterange"]').daterangepicker({
+//		    "startDate": "05/02/2016",
+//		    "endDate": "05/10/2016",
+		 	//startDate:"2016-05-02",
+		// 	endDate:"2016-05-12",
+		 
+		 	startDate: moment().subtract('days', 6),
+		 	endDate: moment(),
+		 		
+		 	timePicker: true,	      
+	        timePicker24Hour: true,
+	        timePickerSeconds:true,
+	        timePickerIncrement: 1,
+	        showDropdowns: true,
+	        /*ranges: {
+	             'Today': [moment(), moment()],
+	             'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+	             'Last 7 Days': [moment().subtract('days', 6), moment()],
+	             'Last 30 Days': [moment().subtract('days', 29), moment()],
+	             'This Month': [moment().startOf('month'), moment().endOf('month')],
+	             'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')],
+	             'Last Year': [moment().subtract('month', 12).startOf('month'), moment().subtract('month', 1).endOf('month')]
+	          },*/
+	        locale: {
+	          //format: 'MM/DD/YYYY h:mm A'
+	        	format: 'YYYY-MM-DD H:mm'
+	        	
+	        }
+	 });	
+	 $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+		  console.log(picker.startDate.format('YYYY-MM-DD'));
+		  console.log(picker.startDate.format('YYYY-MM-DDTHH:mm:ss'));
+		  
+		 
+		  console.log(picker.endDate.format('YYYY-MM-DD'));
+		  console.log(picker.endDate.format('YYYY-MM-DDTHH:mm:ss'));
+		});
 	// $("#div_response").hide();
 	 
 	$('.selectpicker').selectpicker({
@@ -58,6 +118,13 @@ $(document).ready(function() {
             "\n\t\txsi:schemaLocation=\"http://www.opengis.net/sos/2.0 http://schemas.opengis.net/sos/2.0/sos.xsd\">";
 	
 	var mergeObservations="<swes:extension><swe:Boolean definition=\"MergeObservationsIntoDataArray\"><swe:value>true</swe:value></swe:Boolean></swes:extension>";
+	var beginPosition="Please provide a time";
+	var endPosition="Please provide a time";
+	var reqTemporalFilter ="<sos:temporalFilter> <fes:During>"+
+                    "<fes:ValueReference>phenomenonTime</fes:ValueReference><gml:TimePeriod gml:id=\"tp_1\">  <gml:beginPosition>"+
+                    beginPosition + "</gml:beginPosition><gml:endPosition>+"+
+                    endPosition + "</gml:endPosition> </gml:TimePeriod> </fes:During> </sos:temporalFilter>";
+                    
 	var reqEnding = " \n\t\t\t<sos:responseFormat>http://www.opengis.net/om/2.0 </sos:responseFormat>        \n\t\t</sos:GetObservation>    \n\t</env:Body>\n</env:Envelope>";
 		
 	$("#fillTextAreaReset").click(function(){
@@ -138,6 +205,15 @@ $(document).ready(function() {
 			}		
 			requestComplete +=reqProcedure;
 			requestComplete +=reqProperty;
+			if($('#check_tempFilter').is(':checked') )
+			{
+				requestComplete +=reqTemporalFilter;
+			}
+			else
+			{
+			    //Not checked
+			}
+		
 			requestComplete += reqEnding;
 		//	$(exampleTextarea).val(requestComplete);
 		    
