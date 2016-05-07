@@ -32,6 +32,17 @@
 		<script src="js/javascript.js"></script> 
 		<script src="js/xml.js"></script> 
 		<script src="js/vkbeautify.0.99.00.beta.js"></script> 
+		
+		
+	<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script src="js/moment-with-locales.js"></script>
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.19/daterangepicker.min.js"></script>
+	
+	<!--<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.19/daterangepicker.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" /> -->
+	
 					  
 	
 </head>
@@ -42,7 +53,8 @@
         <div class="row">
         
         <div class="clearfix" >
-		  <div style="float: right;">
+		  <div style="float: right;" data-toggle='tooltip' data-placement='bottom' 
+								data-original-title="Settings" >
 		  <a href="#"><span style="font-size:1.5em;"  class="glyphicon glyphicon-cog fa-5x" data-toggle="modal" data-target="#myModal"></span></a>
 		  </div>
 		</div>
@@ -58,6 +70,11 @@
       </div>
       <div class="modal-body">
    				...settings here...
+   				<ul>
+   				<li>enable/disable tooltips</li>
+   				<li>add ogc sos url to a dropdown menu list</li>
+   				<li>use cashed GetCapabilitiesResponse or force a new query to sos</li>
+   				</ul>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -86,19 +103,25 @@
 			<div id="input2" class="c_container_inner well">
 				<form class="form-horizontal" role="form">
 					<div class="form-group ">
-						<label for="l_getCapabilitesURL" class="col-sm-2 control-label">GetCapabilites URL</label>
+						<label for="l_getCapabilitesURL" class="col-sm-2 control-label">OGC SOS URL</label>
 						
 						<div class="col-sm-10 input-group "><!--um die inputbox noch kleiner zu machen form-group-sm-->
 							<input type="text" class="form-control"	id="input_getCapabilitesURL"
 								value="https://ispacevm30.researchstudio.at/focus/service"
-								placeholder="provide the URL to request a GetCapabilites">
+								placeholder="provide the URL to request a GetCapabilites"
+								data-toggle='tooltip' data-placement='top' 
+								data-original-title="Sends a GetCapabilities request to the provided OGC SOS URL. The response is used to extract procedures and observedProperty."
+								>
 							<!-- <span class="input-group-addon"></span> -->
 							<span class="input-group-addon"
 								style="width: 0px; padding-left: 0px; padding-right: 0px; border: none;"></span>
 
 							<span class="input-group-btn">
-								<button id="b_submitGetCapabilities2" type="button"
-									class="btn btn-primary">Get data</button>
+								<button id="b_submitGetCapabilities2" type="button" 
+									class="btn btn-primary"
+									data-toggle='tooltip' data-placement='top' 
+								data-original-title="Sends a GetCapabilities request to the provided OGC SOS URL. The response is used to extract procedures and observedProperty."
+									>GetCapabilities</button>
 							</span>
 						</div>
 					</div>
@@ -141,6 +164,31 @@
 			</div>
 		</div>
 
+		<div class="form-group pull-right"> 
+			<button id="b_displayHelp" type="button" class="btn btn-sm btn-link" name="someName" style="margin: 10px;">Display help</button>
+		</div>
+	
+	<div id="temporalFilter" class="row">
+		<div class="c_container_inner well">
+			<form class="form-horizontal" role="form">
+										
+					<div class="form-group" >					
+						<label for="l_tempFilter" class="col-sm-2 control-label" title="Check box if you want to use a temporal filter in the GetObservation request.">Temporal filter</label>
+						<div class="checkbox icheckbox_flat-aero">
+							<label class="icheckbox_flat-aero" data-toggle='tooltip' data-placement='top' data-original-title="Check box if you want to use a temporal filter in the GetObservation request." >
+								<input id="check_tempFilter" type="checkbox"  value="tempFilter"  style="text-align:right;">(activate)</label>
+						</div>						
+					</div>
+					
+					<div class="form-group">					
+						<div class="col-sm-4 col-md-offset-2 input-group ">
+							<input type="text" class="form-control"	id="daterange" name="daterange" value="01/01/2015 - 01/31/2015" />
+						</div>								
+					</div>		
+							
+				</form>
+		</div>
+	</div>
 
 		<div class="panel-group c_panel">
 			<div class="panel panel-primary">
@@ -154,7 +202,7 @@
 		</div>
 
 
-		<div class="row" style="margin-right: 5px;">
+		<div id="createRequest" class="row" style="margin-right: 5px;">
 			<div class="c_container_inner">
 				<form class="form-horizontal" role="form">
 					<div class="form-group ">
@@ -509,11 +557,15 @@ dropdown
 			    <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
 			    
                 
-		</div><div class="form-group pull-right">
-			    
-			    
+		</div>
+		
+		<div class="form-group pull-right">
+  
                 
-		<button id="b_displayHelp" type="button" class="btn btn-sm btn-link" name="someName">Display help</button></div><div class="row" id="tab53" data-role="tab" style="display: block;">
+		<button id="b_displayHelp" type="button" class="btn btn-sm btn-link" name="someName">Display help</button>
+		</div>
+		
+		<div class="row" id="tab53" data-role="tab" style="display: block;">
 				<ul class="nav nav-tabs">
 					  <li class="active"><a href="#tabContent54" data-toggle="tab" id="tabLabel54">Procedure</a></li>
 					  <li class=""><a data-toggle="tab" href="#tabContent55" id="tabLabel55">ObservedProperty</a></li>
