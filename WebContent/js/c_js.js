@@ -15,7 +15,7 @@ $(document).ready(function() {
 		    //	alert("box is checked");
 		    } else {
 		        //$('input#Checkbox1').removeClass('checked');
-		    	//alert("box is NOET checked");
+		    	//alert("box is NOT checked");
 		    }
 		});
 		

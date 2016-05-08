@@ -53,7 +53,25 @@
         <div class="row">
         
         <div class="clearfix" >
-		  <div style="float: right;" data-toggle='tooltip' data-placement='bottom' 
+        <div style="float: left;">
+
+	<div>
+		<ul class="nav nav-pills">
+  			  <li role="presentation" class="dropdown">
+				 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+     				<span style="font-size:1.5em;"  class="glyphicon glyphicon-globe fa-5x"></span><span class="caret"></span>
+			    </a>
+			        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a href="insertsensor">Create InsertSensor</a></li>
+					    <li role="separator" class="divider"></li>
+    					<li><a href="#">Separated link</a></li>
+  					</ul>
+  			</li>
+  		</ul>
+  	</div>	
+		</div>
+		
+		<div style="float: right;" data-toggle='tooltip' data-placement='bottom' 
 								data-original-title="Settings" >
 		  <a href="#"><span style="font-size:1.5em;"  class="glyphicon glyphicon-cog fa-5x" data-toggle="modal" data-target="#myModal"></span></a>
 		  </div>
@@ -95,6 +113,7 @@
 				2. Select 1 procedure<br>
 				3. Select 1-n observedProperty<br>
 				4. Press "Create request"</p>
+				
 				</div>
 			</div>
 		</div>

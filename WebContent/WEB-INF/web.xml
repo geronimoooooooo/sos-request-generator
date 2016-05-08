@@ -9,4 +9,13 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+<servlet>
+    <servlet-name>insertsensor</servlet-name>
+    <jsp-file>/insertsensor.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+    <servlet-name>insertsensor</servlet-name>
+    <url-pattern>/insertsensor</url-pattern>
+</servlet-mapping>
 </web-app>
