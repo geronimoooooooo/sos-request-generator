@@ -125,7 +125,7 @@
 						<label for="l_getCapabilitesURL" class="col-sm-2 control-label">OGC SOS URL</label>
 						
 						<div class="col-sm-10 input-group "><!--um die inputbox noch kleiner zu machen form-group-sm-->
-							<input type="text" class="form-control"	id="input_getCapabilitesURL"
+							<input type="text" class="form-control eckige-ecke"	id="input_getCapabilitesURL"
 								value="https://ispacevm30.researchstudio.at/focus/service"
 								placeholder="provide the URL to request a GetCapabilites"
 								data-toggle='tooltip' data-placement='top' 
