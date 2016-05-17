@@ -41,26 +41,29 @@ public class GetCapabilitiesUrl extends HttpServlet {
 		List<String>list_procedures = new ArrayList<String>();
 		
 		String url = request.getParameter("url");
+		System.out.println("GetCapabilities URL: "+ url);
 		String fu = request.getParameter("fu");
 		System.out.println("das ist url:"+url+ "fu: "+fu);
 		
 		
 		//String urlService ="https://ispacevm30.researchstudio.at/sos41/service";
-		String urlService ="https://ispacevm30.researchstudio.at/focus/service";
+		//String urlService ="https://ispacevm30.researchstudio.at/focus/service";
+		String urlService =url;
 		String msg ="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<env:Envelope\r\n    xmlns:env=\"http://www.w3.org/2003/05/soap-envelope\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.w3.org/2003/05/soap-envelope http://www.w3.org/2003/05/soap-envelope/soap-envelope.xsd\">\r\n    <env:Body>\r\n        <sos:GetCapabilities\r\n            xmlns:sos=\"http://www.opengis.net/sos/2.0\"\r\n            xmlns:ows=\"http://www.opengis.net/ows/1.1\" service=\"SOS\" xsi:schemaLocation=\"http://www.opengis.net/sos/2.0 http://schemas.opengis.net/sos/2.0/sosGetCapabilities.xsd\">\r\n            <ows:AcceptVersions>\r\n                <ows:Version>2.0.0</ows:Version>\r\n            </ows:AcceptVersions>\r\n            <ows:Sections>\r\n                <ows:Section>OperationsMetadata</ows:Section>\r\n                <ows:Section>ServiceIdentification</ows:Section>\r\n                <ows:Section>ServiceProvider</ows:Section>\r\n                <ows:Section>FilterCapabilities</ows:Section>\r\n                <ows:Section>Contents</ows:Section>\r\n            </ows:Sections>\r\n        </sos:GetCapabilities>\r\n    </env:Body>\r\n</env:Envelope>";
 		
-		if(!GetObservationRequest.alreadyGotCapabilities){
+		//if(!GetObservationRequest.alreadyGotCapabilities){
 			Networking net = new Networking();
 			String str_repsonse = net.sendPOST2Webservice(urlService, msg);
 			ParserGetCapa parseGetCapa = new ParserGetCapa();
 			parseGetCapa.parseGetCapabilitiesXml(str_repsonse);
-		}
+		//}
 		GetObservationRequest.alreadyGotCapabilities = true;
 		
 		for(Procedure pro: GetCapabilitiesSos.list_procedures){
 			list_procedures.add(pro.procedureUrn);
 		}
 	    String json = new Gson().toJson(list_procedures);
+	    System.out.println(json);
         response.setContentType("application/json");
         response.getWriter().write(json);
 //		
