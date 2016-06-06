@@ -59,8 +59,8 @@ textarea {
 }
 #c_p_intro {
 	margin-top: -10px;
-	margin-bottom: 20px;
-	padding-bottom: 15px;
+	/*margin-bottom: 20px;
+	padding-bottom: 15px;*/
 }
 .border_radius{
 	border-radius: 20px;

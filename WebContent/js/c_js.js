@@ -8,31 +8,42 @@ $(document).ready(function() {
 		
 		if($('#check_tempFilter').is(':checked') ){
 		//	alert("checked!");
-		}
+		}				
+		
+		$("#b_displayHelp_intro").click(function(){
+	        $("#intro_help").toggle();
+	    });
+		$("#intro_help").hide();
+		$('#d22').hide();
+				
 		$('input#check_tempFilter').change(function () {
-		    if ($('input#check_tempFilter').is(':checked')) {
+			$('#d22').toggle();
+			//$('#d22').show();
+			console.log("show");
+//			 $("#daterange").daterangepicker("clearRange");
+//			 $('#check_mergeArray').data('daterangepicker').toggle();
+			if ($('input#check_tempFilter').is(':checked')) {
 		     //   $('input#Checkbox1').addClass('checked');
 		    //	alert("box is checked");
 		    } else {
+		     
 		        //$('input#Checkbox1').removeClass('checked');
 		    	//alert("box is NOT checked");
 		    }
 		});
 		
 		
-		
-		
 		$("[data-toggle='tooltip']").tooltip({
 			//default ist ohne Inhalt in {} bezieht sich dann auf "focus" 
 			trigger : 'hover'
 		});
-	 
-		$('input[name="daterange"]').daterangepicker({
+		
+		$('input[name="dr"]').daterangepicker({
 //		    "startDate": "05/02/2016",
 //		    "endDate": "05/10/2016",
 		 	//startDate:"2016-05-02",
 		// 	endDate:"2016-05-12",
-		 
+			autoApply: true,
 		 	startDate: moment().subtract('days', 6),
 		 	endDate: moment(),
 		 		
@@ -52,17 +63,54 @@ $(document).ready(function() {
 	          },*/
 	        locale: {
 	          //format: 'MM/DD/YYYY h:mm A'
-	        	format: 'YYYY-MM-DD H:mm'
+	        	format: 'YYYY-MM-DD H:mm',
+	        	applyLabel: 'Confirm Selection'
+	        	
+	        }
+	 });
+		
+		$('input[name="daterange"]').daterangepicker({
+//		    "startDate": "05/02/2016",
+//		    "endDate": "05/10/2016",
+		 	//startDate:"2016-05-02",
+		// 	endDate:"2016-05-12",
+			autoApply: true,
+		 	startDate: moment().subtract('days', 6),
+		 	endDate: moment(),
+		 		
+		 	timePicker: true,	      
+	        timePicker24Hour: true,
+	        timePickerSeconds:true,
+	        timePickerIncrement: 1,
+	        showDropdowns: true,
+	        /*ranges: {
+	             'Today': [moment(), moment()],
+	             'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+	             'Last 7 Days': [moment().subtract('days', 6), moment()],
+	             'Last 30 Days': [moment().subtract('days', 29), moment()],
+	             'This Month': [moment().startOf('month'), moment().endOf('month')],
+	             'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')],
+	             'Last Year': [moment().subtract('month', 12).startOf('month'), moment().subtract('month', 1).endOf('month')]
+	          },*/
+	        locale: {
+	          //format: 'MM/DD/YYYY h:mm A'
+	        	format: 'YYYY-MM-DD H:mm',
+	        	applyLabel: 'Confirm Selection'
 	        	
 	        }
 	 });	
+
+
+
 	 $('#daterange').on('apply.daterangepicker', function(ev, picker) {
-		  console.log(picker.startDate.format('YYYY-MM-DD'));
+		  //console.log(picker.startDate.format('YYYY-MM-DD'));
 		  console.log(picker.startDate.format('YYYY-MM-DDTHH:mm:ss'));
-		  
+		  beginPosition = picker.startDate.format('YYYY-MM-DDTHH:mm:ss');
 		 
-		  console.log(picker.endDate.format('YYYY-MM-DD'));
+		  //console.log(picker.endDate.format('YYYY-MM-DD'));
 		  console.log(picker.endDate.format('YYYY-MM-DDTHH:mm:ss'));
+		  endPosition = picker.endDate.format('YYYY-MM-DDTHH:mm:ss');
+		  dateRangeUsed = true;
 		});
 	// $("#div_response").hide();
 	 
@@ -73,6 +121,7 @@ $(document).ready(function() {
 	  size: 10
 	});
 	
+	var dateRangeUsed= false;
 	var procedureUrn ="";
 	//dropdown procedure
 	$('#sports2').change(function(event) {
@@ -118,11 +167,14 @@ $(document).ready(function() {
             "\n\t\txsi:schemaLocation=\"http://www.opengis.net/sos/2.0 http://schemas.opengis.net/sos/2.0/sos.xsd\">";
 	
 	var mergeObservations="<swes:extension><swe:Boolean definition=\"MergeObservationsIntoDataArray\"><swe:value>true</swe:value></swe:Boolean></swes:extension>";
-	var beginPosition="Please provide a time";
-	var endPosition="Please provide a time";
+	var beginPosition="";
+	var endPosition="";
+	var reqTemporalFilterBeforeBeginPosition ="<sos:temporalFilter> <fes:During><fes:ValueReference>phenomenonTime</fes:ValueReference><gml:TimePeriod gml:id=\"tp_1\">  <gml:beginPosition>";
+	var reqTemporalFilterAfterBeginPositionAndBeforeEndPosition ="</gml:beginPosition><gml:endPosition>";
+	var reqTemporalFilterAfterEndPosition = "</gml:endPosition> </gml:TimePeriod> </fes:During> </sos:temporalFilter>";
 	var reqTemporalFilter ="<sos:temporalFilter> <fes:During>"+
                     "<fes:ValueReference>phenomenonTime</fes:ValueReference><gml:TimePeriod gml:id=\"tp_1\">  <gml:beginPosition>"+
-                    beginPosition + "</gml:beginPosition><gml:endPosition>+"+
+                    beginPosition + "</gml:beginPosition><gml:endPosition>"+
                     endPosition + "</gml:endPosition> </gml:TimePeriod> </fes:During> </sos:temporalFilter>";
                     
 	var reqEnding = " \n\t\t\t<sos:responseFormat>http://www.opengis.net/om/2.0 </sos:responseFormat>        \n\t\t</sos:GetObservation>    \n\t</env:Body>\n</env:Envelope>";
@@ -171,7 +223,7 @@ $(document).ready(function() {
 			    	document.getElementById("exampleTextarea").value="";
 		    	}
 			 
-			console.log("Button#createRequest");
+			console.log("Button#createRequest");			
 			var select2 = $('#player2');
 			select2.each(function(el) {
 			//	alert($(this).val())
@@ -190,11 +242,14 @@ $(document).ready(function() {
 			requestComplete += reqXmlHeader;
 			requestComplete += reqEnvelope;		
 			requestComplete += reqBodyObs;
-			requestComplete += mergeObservations;
+			if($('#check_mergeArray').is(':checked') )
+			{
+				requestComplete += mergeObservations;
+			}			
 			
-			var reqProcedure="\n\n";
-			reqProcedure += "\t\t\t<sos:procedure>"+procedureUrn+"</sos:procedure>\n";
-				
+			var reqProcedure="\n\n\n";
+			reqProcedure += "\n\t\t\t<sos:procedure>"+procedureUrn+"</sos:procedure>\n";
+			requestComplete += "\n"
 			var arr="a,b,c,d";
 			list_observedProopertySelected = str_observedProopertySelected.toString().split(",");
 			console.log("list_observedProopertySelected[0] :"+list_observedProopertySelected[0]);
@@ -207,7 +262,16 @@ $(document).ready(function() {
 			requestComplete +=reqProperty;
 			if($('#check_tempFilter').is(':checked') )
 			{
-				requestComplete +=reqTemporalFilter;
+				if(dateRangeUsed){
+				//	requestComplete +=reqTemporalFilter;
+					requestComplete += reqTemporalFilterBeforeBeginPosition;
+					requestComplete += beginPosition+"Z";
+					requestComplete += reqTemporalFilterAfterBeginPositionAndBeforeEndPosition;
+					requestComplete += endPosition+"Z";;
+					requestComplete += reqTemporalFilterAfterEndPosition;
+				}
+				
+				
 			}
 			else
 			{
@@ -257,6 +321,7 @@ $(document).ready(function() {
 		}); 
 		var config2, editor2;
 		var xml_resp ="";
+		
 		$("#sendCreatedRequest").click(function() {		
 			xml_resp ="";
 			 if(editor2 !=undefined){
@@ -266,7 +331,7 @@ $(document).ready(function() {
 		    	}
 			 
 			var url = $("#input_getCapabilitesURL").val();
-			var xml= $(exampleTextarea).val()
+			var xml= $(exampleTextarea).val();
 			console.log("this is xml_vkbeautified: "+xml );
 		 	$.ajax({
 		 	    // The URL for the request //"post.php"
@@ -392,6 +457,8 @@ $(document).ready(function() {
 
 			var select = $('#sports2');
 			select.find('option').remove();
+			$('<option data-hidden="true">').val('').text('').appendTo(select);
+			//$('<option>').val('value').text('value').appendTo(select);
 			$.each(returnedData, function(index, value) {
 				console.log(value);
 				$('<option>').val(value).text(value).appendTo(select);

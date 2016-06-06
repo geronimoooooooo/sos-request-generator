@@ -6,7 +6,7 @@
 	<title>SOS Request Generator</title>
     <meta charset="utf-8">    
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -107,13 +107,25 @@
 				<h2 id="header_sos">SOS Request Generator</h2>
 				<hr>
 				<div>
-				<p id="c_p_intro">do stuff http://demo.pycsw.org/gisdata/csw?service=CSW&version=2.0.2&request=GetCapabilities&outputFormat=application/json <br>
+				<p id="c_p_intro">
+				The SOS Request Generator creates <b>GetObservation</b> requests by extracting needed values from <b>GetCapabilities</b> that is queryied from the provided OGC SOS URL.<br>
+						 </p>
+			
+		
+				 <p id="intro_help">
+				 do stuff http://demo.pycsw.org/gisdata/csw?service=CSW&version=2.0.2&request=GetCapabilities&outputFormat=application/json <br>
 				https://gist.githubusercontent.com/geronimoooooooo/a916893a267fbd2b2701/raw/39d85d6b67fc2cb7abce16a5fc8ccebba11692c5/multi.geojson<br>
 				1. Press "Get data"<br>
 				2. Select 1 procedure<br>
 				3. Select 1-n observedProperty<br>
-				4. Press "Create request"</p>
+				4. Press "Create request"<br><br>
+				You can either copy the created request (string) from the <b>SOS GetObservation Request</b> area or send the request directly from this page to the SOS server and retrieve a GetObservation response. 
 				
+				</p>
+
+				<div class="form-group pull-right"> 
+					<button id="b_displayHelp_intro" type="button" class="btn btn-sm btn-link" >Display help</button>
+				</div>
 				</div>
 			</div>
 		</div>
@@ -164,7 +176,8 @@
 
 						<div class="col-sm-10 input-group">
 							<select id="sports2" class="selectpicker show-tick" data-live-search="true">
-								<option>Select a procedure</option>								
+								<option data-hidden="true"></option>
+								<option>Select a procedure!</option>																
 							</select>
 						</div>
 					</div>
@@ -194,17 +207,29 @@
 					<div class="form-group" >					
 						<label for="l_tempFilter" class="col-sm-2 control-label" title="Check box if you want to use a temporal filter in the GetObservation request.">Temporal filter</label>
 						<div class="checkbox icheckbox_flat-aero">
-							<label class="icheckbox_flat-aero" data-toggle='tooltip' data-placement='top' data-original-title="Check box if you want to use a temporal filter in the GetObservation request." >
+							<label class="icheckbox_flat-aero" data-toggle='tooltip' data-placement='top' data-original-title="Check box if you want to use a temporal filter in the GetObservation request. Confirm the temporal filter by pressing the button 'Confirm Selection'" >
 								<input id="check_tempFilter" type="checkbox"  value="tempFilter"  style="text-align:right;">(activate)</label>
+								<div id="d22" class="col-sm-4 col-md-offset-2 input-group">
+									<input type="text" class="form-control"	id="daterange" name="daterange" value="01/01/2015 - 01/31/2015" />
+								</div>		
 						</div>						
 					</div>
 					
+					<div class="form-group" >					
+						<label for="l_mergeArray" class="col-sm-2 control-label" title="Check box if you want to use <i>MergeObservationsIntoDataArray</i> in the GetObservation request.">MergeObservations IntoDataArray</label>
+						<div class="checkbox icheckbox_flat-aero">
+							<label class="icheckbox_flat-aero" data-toggle='tooltip' data-placement='top' data-original-title="Check box if you want to use MergeObservationsIntoDataArray in the GetObservation request." >
+								<input id="check_mergeArray" type="checkbox"  value="mergeArray"  style="text-align:right;">(activate)</label>
+									
+						</div>						
+					</div>
+					
+					<!-- 
 					<div class="form-group">					
 						<div class="col-sm-4 col-md-offset-2 input-group ">
 							<input type="text" class="form-control"	id="daterange" name="daterange" value="01/01/2015 - 01/31/2015" />
 						</div>								
-					</div>		
-							
+					</div> -->							
 				</form>
 		</div>
 	</div>
@@ -260,7 +285,7 @@
 		    	</div>
 		    </div>
 		</div>		
-</div>
+	</div>
 
 
 <br><br><br>

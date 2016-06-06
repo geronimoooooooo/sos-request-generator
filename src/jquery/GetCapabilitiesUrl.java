@@ -57,7 +57,7 @@ public class GetCapabilitiesUrl extends HttpServlet {
 			ParserGetCapa parseGetCapa = new ParserGetCapa();
 			parseGetCapa.parseGetCapabilitiesXml(str_repsonse);
 		//}
-		GetObservationRequest.alreadyGotCapabilities = true;
+	//	GetObservationRequest.alreadyGotCapabilities = true;
 		
 		for(Procedure pro: GetCapabilitiesSos.list_procedures){
 			list_procedures.add(pro.procedureUrn);

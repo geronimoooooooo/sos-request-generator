@@ -45,6 +45,7 @@ public class ParserGetCapa {
 	public void parseGetCapabilitiesXml(String getCapabilitiesResponse){
 		
 		ArrayList<String> list_procedures = new ArrayList<String>();
+		GetCapabilitiesSos.list_procedures.clear(); //because static list
 		DocumentBuilder dbuilder = null;
 		Document doc =  null;
 		String xml_final;
@@ -135,7 +136,8 @@ public class ParserGetCapa {
 			for(Procedure p: GetCapabilitiesSos.list_procedures){
 	//			logger.debug("procedureURN: "+p.procedureUrn);
 				for(String s:p.list_observedProperty){
-		//			logger.debug(s);
+					//logger.debug(s);
+					System.out.println(s);
 				}
 			//	logger.debug("########################################################");
 			}
