@@ -108,7 +108,7 @@
 				<hr>
 				<div>
 				<p id="c_p_intro">
-				The SOS Request Generator creates <b>GetObservation</b> requests by extracting needed values from <b>GetCapabilities</b> that is queryied from the provided OGC SOS URL.<br>
+				The SOS Request Generator creates <b>GetObservation</b> requests by extracting needed data from <b>GetCapabilities</b> that is queryied from the provided OGC SOS URL.<br>
 						 </p>
 			
 		
