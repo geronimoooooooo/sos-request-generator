@@ -15,16 +15,25 @@ $(document).ready(function() {
 	    });
 		$("#intro_help").hide();
 		$('#d22').hide();
+		
+		var startTime;
+		var endTime; 
+		
 				
 		$('input#check_tempFilter').change(function () {
 			$('#d22').toggle();
 			//$('#d22').show();
-			console.log("show");
+
 //			 $("#daterange").daterangepicker("clearRange");
 //			 $('#check_mergeArray').data('daterangepicker').toggle();
 			if ($('input#check_tempFilter').is(':checked')) {
 		     //   $('input#Checkbox1').addClass('checked');
 		    //	alert("box is checked");
+			   	 $.toast({
+			   		    heading: 'Confirm Selection',
+			   		    text: 'Confirm the temporal filter by selecting a time period and pressing the "Confirm Selection" button.',
+			   		    icon: 'info'
+			   		});
 		    } else {
 		     
 		        //$('input#Checkbox1').removeClass('checked');
@@ -618,7 +627,6 @@ $(document).ready(function() {
    		    icon: 'info'
    		});
     });	
-    
     
 	
 	

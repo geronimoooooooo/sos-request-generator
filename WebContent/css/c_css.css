@@ -55,6 +55,7 @@ textarea {
 	margin-right: 30px;
 }
 #div_response {
+	margin-top: 20px;
 	display: none;
 }
 #c_p_intro {

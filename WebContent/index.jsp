@@ -108,7 +108,7 @@
 				<hr>
 				<div>
 				<p id="c_p_intro">
-				The SOS Request Generator creates <b>GetObservation</b> requests by extracting needed data from <b>GetCapabilities</b> that is queryied from the provided OGC SOS URL.<br>
+				The SOS Request Generator creates a <b>GetObservation</b> request by extracting needed data from a <b>GetCapabilities</b> that is queried from the provided OGC SOS URL.<br>
 						 </p>
 			
 		
@@ -207,7 +207,7 @@
 					<div class="form-group" >					
 						<label for="l_tempFilter" class="col-sm-2 control-label" title="Check box if you want to use a temporal filter in the GetObservation request.">Temporal filter</label>
 						<div class="checkbox icheckbox_flat-aero">
-							<label class="icheckbox_flat-aero" data-toggle='tooltip' data-placement='top' data-original-title="Check box if you want to use a temporal filter in the GetObservation request. Confirm the temporal filter by pressing the button 'Confirm Selection'" >
+							<label class="icheckbox_flat-aero" data-toggle='tooltip' data-placement='top' data-original-title="Check box if you want to use a temporal filter in the GetObservation request. Confirm the temporal filter by selecting a time period and pressing the 'Confirm Selection' button.">
 								<input id="check_tempFilter" type="checkbox"  value="tempFilter"  style="text-align:right;">(activate)</label>
 								<div id="d22" class="col-sm-4 col-md-offset-2 input-group">
 									<input type="text" class="form-control"	id="daterange" name="daterange" value="01/01/2015 - 01/31/2015" />
@@ -257,11 +257,27 @@
 				</form>
 			</div>
 		</div>
+</div>
 		
-		<div id="div_response" class="well"  >
-		<h2 class="text-center">Response</h2>
-		<p>Text text Godzilla ......<br>
-		1. Press "Send created request" to query the SOS server and recieve a GetObservation response.</p>
+<div id="div_response" class="container c_container box_shadow ">	
+
+
+				<h2 id="header_response">Response</h2>
+				<hr>
+				<div>
+				<p id="c_p_response">
+				Press the "Send created request" button to query the SOS server with the created GetObservation request and receive a GetObservation response.<br>
+						 </p>
+					
+				 <p id="response_help">
+				 			
+				</p>				
+				</div>
+			
+			
+
+
+		<div >
 		<div class="row" style="margin-right: 0px;">
 			<div class="c_container_inner">
 				<form class="form-horizontal" role="form">
