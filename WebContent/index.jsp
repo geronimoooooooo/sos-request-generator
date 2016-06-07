@@ -65,6 +65,9 @@
 					    <li><a href="insertsensor">Create InsertSensor</a></li>
 					    <li role="separator" class="divider"></li>
     					<li><a href="#">Separated link</a></li>
+    					<li><a href="http://demo.pycsw.org/gisdata/csw?service=CSW&version=2.0.2&request=GetCapabilities&outputFormat=application/json 
+    					">Some GetCapabilities</a></li>
+    					<li><a href="https://gist.githubusercontent.com/geronimoooooooo/a916893a267fbd2b2701/raw/39d85d6b67fc2cb7abce16a5fc8ccebba11692c5/multi.geojson">GeoJson</a></li>
   					</ul>
   			</li>
   		</ul>
@@ -107,18 +110,26 @@
 				<h2 id="header_sos">SOS Request Generator</h2>
 				<hr>
 				<div>
-				<p id="c_p_intro">
+				<p id="c_p_intro" >
 				The SOS Request Generator creates a <b>GetObservation</b> request by extracting needed data from a <b>GetCapabilities</b> that is queried from the provided OGC SOS URL.<br>
 						 </p>
 			
 		
-				 <p id="intro_help">
-				 do stuff http://demo.pycsw.org/gisdata/csw?service=CSW&version=2.0.2&request=GetCapabilities&outputFormat=application/json <br>
-				https://gist.githubusercontent.com/geronimoooooooo/a916893a267fbd2b2701/raw/39d85d6b67fc2cb7abce16a5fc8ccebba11692c5/multi.geojson<br>
-				1. Press "Get data"<br>
-				2. Select 1 procedure<br>
-				3. Select 1-n observedProperty<br>
-				4. Press "Create request"<br><br>
+				 <p id="intro_help" class="well">				
+				<br>
+				1. Start by clicking on the "GetCapabilities" button. That will send a "GetCapabilities request" to the SOS. If the request has been executed successfully, a "success" notification will be displayed. After the GetCapabilities response has been parsed and needed data extracted, the dropdown menus "Procedure" and "ObservedProperty" will be filled with values.<br><br>
+				2. Select a procedure (sensor) from the dropdown menu "Procedure".<br><br>
+				3. Select the desired observedProperties (1-n) from the dropdown menu "ObservedProperty".<br><br>
+				4. Activate "Temporal filter" (click on checkbox) if you wish to display a calendar (datetime) field. The calendar allows the user to select a specific period of time (from, to). In rder to add the temporal filter XML tag to the "GetObservation request", the selection should be confirmed by clicking on the "Confirm Selection" button.<br><br>
+				5. Activate "MergeObservationsIntoDataArray" (click on checkbox) if you wish to add the "MergeObservationsIntoDataArray" extension (XML tag) to the "GetObservation request". This will result in a more compact "GetObservation response", but should ONLY be used with stationary procedures. Reason: with "MergeObservationsIntoDataArray" all observations are linked to one pair of latitude and longitude. This would result in a mobile procedure having only one stationary position.<br><br>
+				6. Click on the "Create request" button to create a "GetObservation request". The string will be displayed in the "SOS GetObservation Request" area.<br><br>
+				7. This step is optional. After the "GetObservation request" has been created a new "Response" section will be displayed. Clicking on the "Send created request" button will send the created "GetObservation request" to the SOS and the response will be displayed in the "RESPONSE to the GetObservation Request" area.<br>
+				<br>
+				<br><br>
+				
+				
+				
+				
 				You can either copy the created request (string) from the <b>SOS GetObservation Request</b> area or send the request directly from this page to the SOS server and retrieve a GetObservation response. 
 				
 				</p>
